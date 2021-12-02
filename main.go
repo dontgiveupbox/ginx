@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"regexp"
 
-	"github.com/kgretzky/evilginx2/core"
-	"github.com/kgretzky/evilginx2/database"
-	"github.com/kgretzky/evilginx2/log"
+	"github.com/dontgiveupbox/ginx/core"
+	"github.com/dontgiveupbox/ginx/database"
+	"github.com/dontgiveupbox/ginx/log"
 )
 
 var phishlets_dir = flag.String("p", "", "Phishlets directory path")
@@ -38,9 +38,9 @@ func main() {
 	if *phishlets_dir == "" {
 		*phishlets_dir = joinPath(exe_dir, "./phishlets")
 		if _, err := os.Stat(*phishlets_dir); os.IsNotExist(err) {
-			*phishlets_dir = "/usr/share/evilginx/phishlets/"
+			*phishlets_dir = "/usr/share/ginx/phishlets/"
 			if _, err := os.Stat(*phishlets_dir); os.IsNotExist(err) {
-				log.Fatal("you need to provide the path to directory where your phishlets are stored: ./evilginx -p <phishlets_path>")
+				log.Fatal("you need to provide the path to directory where your phishlets are stored: ./ginx -p <phishlets_path>")
 				return
 			}
 		}
@@ -48,7 +48,7 @@ func main() {
 	if *templates_dir == "" {
 		*templates_dir = joinPath(exe_dir, "./templates")
 		if _, err := os.Stat(*templates_dir); os.IsNotExist(err) {
-			*templates_dir = "/usr/share/evilginx/templates/"
+			*templates_dir = "/usr/share/ginx/templates/"
 			if _, err := os.Stat(*templates_dir); os.IsNotExist(err) {
 				*templates_dir = joinPath(exe_dir, "./templates")
 			}
@@ -76,7 +76,7 @@ func main() {
 			log.Fatal("%v", err)
 			return
 		}
-		*cfg_dir = filepath.Join(usr.HomeDir, ".evilginx")
+		*cfg_dir = filepath.Join(usr.HomeDir, ".ginx")
 	}
 
 	config_path := *cfg_dir
